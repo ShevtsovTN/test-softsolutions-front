@@ -1,5 +1,6 @@
 import api from "@/api";
 import config from "@/configs";
+import router from "@/router";
 
 const state = {
   user: {},
@@ -34,26 +35,23 @@ const getters = {
 const actions = {
   login({ commit }, payload) {
     api
-      .get(config.urlCsrf + "sanctum/csrf-cookie")
-      .then(() => {
-        api
-          .post(config.url + "login", {
-            email: payload.email,
-            password: payload.password,
-          })
-          .then((response) => {
-            commit("setUser", response.record);
-          })
-          .catch((error) => console.log(error.toJSON()));
+      .post(config.url + "auth/login", {
+        email: payload.email,
+        password: payload.password,
+      })
+      .then((response) => {
+        commit("setUser", response);
+        router.push({ name: "main" });
       })
       .catch((error) => console.log(error.toJSON()));
   },
 
   logout({ commit }) {
     api
-      .post(config.url + "logout")
+      .post(config.url + "auth/logout")
       .then(() => {
         commit("unsetUser");
+        router.push({ name: "login" });
       })
       .catch((error) => console.log(error.toJSON()));
   },
@@ -63,13 +61,15 @@ const actions = {
 const mutations = {
   setUser(state, payload) {
     state.isAuth = true;
-    state.user = payload;
-    state.permission = [...payload.role].shift().name;
+    state.user = payload.data;
+    state.token = payload.token;
+    state.permission = [...payload.data.roles].shift().role;
   },
 
   unsetUser(state) {
     state.isAuth = false;
     state.user = {};
+    state.token = "";
     state.permission = "";
   },
 };
