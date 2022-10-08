@@ -4,7 +4,7 @@ import api from "@/api/index";
 const state = {
   cars: [],
   car: {},
-  checkNextCarsPage: false,
+  checkNextCarPage: false,
 };
 
 // getters
@@ -16,7 +16,7 @@ const getters = {
     return state.car;
   },
   checkNextCarPage(state) {
-    return state.checkNextCarsPage;
+    return state.checkNextCarPage;
   },
 };
 
@@ -27,8 +27,8 @@ const actions = {
       .get(config.url + "cars?page=" + payload)
       .then((response) => {
         commit("setLoading", true);
-        commit("setCheckNextCarsPage", response.meta);
-        commit("setCars", response.records);
+        commit("setCheckNextCarPage", response.meta);
+        commit("setCars", response.data);
         commit("setLoading", false);
       })
       .catch((error) => console.log(error.toJSON()));
@@ -86,10 +86,6 @@ const mutations = {
   addCar(state, payload) {
     state.cars.unshift(payload);
   },
-
-  // addCommentToPost(state, payload) {
-  //   state.car.comments.push(payload);
-  // },
 
   setCheckNextCarPage(state, payload) {
     state.checkNextCarPage = payload.current_page < payload.last_page;

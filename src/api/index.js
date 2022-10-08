@@ -1,30 +1,30 @@
 import axios from "axios";
 
 export default class api {
-  static async get(url) {
+  static async get(url, options = {}) {
     return await axios
-      .get(url)
+      .get(url, options)
       .then((response) => response.data)
       .catch((error) => console.log(error.toJSON()));
   }
 
-  static async post(url, data) {
+  static async post(url, data, options = {}) {
     return await axios
-      .post(url, data)
+      .post(url, data, options)
       .then((response) => response.data)
       .catch((error) => console.log(error.toJSON()));
   }
 
-  static async update(url, data) {
+  static async update(url, data, options = {}) {
     return await axios
-      .put(url, data)
+      .put(url, data, options)
       .then((response) => response.data)
       .catch((error) => console.log(error.toJSON()));
   }
 
-  static async destroy(url) {
+  static async destroy(url, options = {}) {
     return await axios
-      .delete(url)
+      .delete(url, options)
       .then((response) => response.data)
       .catch((error) => console.log(error.toJSON()));
   }

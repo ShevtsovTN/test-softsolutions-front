@@ -1,6 +1,7 @@
 import api from "@/api";
 import config from "@/configs";
 import router from "@/router";
+import axios from "axios";
 
 const state = {
   user: {},
@@ -33,7 +34,7 @@ const getters = {
 
 // actions
 const actions = {
-  login({ commit }, payload) {
+  login({ commit, getters }, payload) {
     api
       .post(config.url + "auth/login", {
         email: payload.email,
@@ -41,6 +42,8 @@ const actions = {
       })
       .then((response) => {
         commit("setUser", response);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + getters.getToken;
         router.push({ name: "main" });
       })
       .catch((error) => console.log(error.toJSON()));

@@ -15,4 +15,3 @@ app.mount("#app");
 
 axios.defaults.withCredentials = true;
 axios.defaults.headers.common["Accept"] = "application/json";
-axios.defaults.headers.common["Bearer"] = store.getters.getToken;
