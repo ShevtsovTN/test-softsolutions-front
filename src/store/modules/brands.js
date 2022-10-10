@@ -28,7 +28,7 @@ const actions = {
       .then((response) => {
         commit("setLoading", true);
         commit("setCheckNextBrandsPage", response.meta);
-        commit("setBrands", response.records);
+        commit("setBrands", response.data);
         commit("setLoading", false);
       })
       .catch((error) => console.log(error.toJSON()));
@@ -76,7 +76,10 @@ const actions = {
 // mutations
 const mutations = {
   setBrands(state, payload) {
-    state.brands = state.brands.concat(payload);
+    const filteredBrands = payload.filter(
+      (brand) => !state.brands.some((_brand) => _brand.id === brand.id)
+    );
+    state.brands = state.brands.concat(filteredBrands);
   },
 
   setBrand(state, payload) {
@@ -91,7 +94,7 @@ const mutations = {
   //   state.car.comments.push(payload);
   // },
 
-  setCheckNextBrandPage(state, payload) {
+  setCheckNextBrandsPage(state, payload) {
     state.checkNextBrandPage = payload.current_page < payload.last_page;
   },
 

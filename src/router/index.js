@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginPage from "@/views/LoginPage.vue";
 import Brands from "@/views/Brands.vue";
-import Brand from "@/views/Brand.vue";
-import Car from "@/views/Car.vue";
+import Brand from "@/views/brand/Brand.vue";
+import Car from "@/views/car/Car.vue";
 import Cars from "@/views/Cars.vue";
 import Models from "@/views/Models.vue";
-import Model from "@/views/Model.vue";
+import Model from "@/views/model/Model.vue";
 import Main from "@/views/Main.vue";
 import store from "@/store";
+import CarsLayout from "@/views/layouts/CarsLayout.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,9 +37,13 @@ const router = createRouter({
     },
     {
       path: "/cars",
-      name: "cars",
-      component: Cars,
+      component: CarsLayout,
       children: [
+        {
+          path: "",
+          name: "cars",
+          component: Cars,
+        },
         {
           path: ":id",
           name: "car",

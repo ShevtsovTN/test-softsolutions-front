@@ -10,10 +10,10 @@ const state = {
 // getters
 const getters = {
   getModels(state) {
-    return state.cars;
+    return state.models;
   },
   getModel(state) {
-    return state.car;
+    return state.model;
   },
   checkNextModelPage(state) {
     return state.checkNextModelsPage;
@@ -28,7 +28,7 @@ const actions = {
       .then((response) => {
         commit("setLoading", true);
         commit("setCheckNextModelsPage", response.meta);
-        commit("setModels", response.records);
+        commit("setModels", response.data);
         commit("setLoading", false);
       })
       .catch((error) => console.log(error.toJSON()));
@@ -76,7 +76,11 @@ const actions = {
 // mutations
 const mutations = {
   setModels(state, payload) {
-    state.models = state.models.concat(payload);
+    const filteredModels = payload.filter(
+      (model) => !state.models.some((_model) => _model.id === model.id)
+    );
+    console.log(payload, filteredModels);
+    state.models = state.models.concat(filteredModels);
   },
 
   setModel(state, payload) {
@@ -87,11 +91,7 @@ const mutations = {
     state.models.unshift(payload);
   },
 
-  // addCommentToPost(state, payload) {
-  //   state.model.comments.push(payload);
-  // },
-
-  setCheckNextModelPage(state, payload) {
+  setCheckNextModelsPage(state, payload) {
     state.checkNextModelPage = payload.current_page < payload.last_page;
   },
 

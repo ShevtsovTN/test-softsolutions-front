@@ -76,7 +76,10 @@ const actions = {
 // mutations
 const mutations = {
   setCars(state, payload) {
-    state.cars = state.cars.concat(payload);
+    const filteredCars = payload.filter(
+      (car) => !state.cars.some((_car) => _car.id === car.id)
+    );
+    state.cars = state.cars.concat(filteredCars);
   },
 
   setCar(state, payload) {

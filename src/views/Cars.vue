@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-4">
-    <table class="table">
+    <table class="table align-middle">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -30,7 +30,11 @@
           <td>{{ car.kpp }}</td>
           <td>{{ car.rent }} р/в сутки</td>
           <td>
-            <button class="btn btn-warning">Edit Car</button>
+            <router-link
+              :to="{ name: 'car', params: { id: car.id } }"
+              class="btn btn-warning"
+              >Edit Car</router-link
+            >
           </td>
           <td>
             <button @click="delCar(car.id)" class="btn btn-danger">
