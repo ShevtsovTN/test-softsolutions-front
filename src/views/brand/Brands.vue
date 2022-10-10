@@ -14,7 +14,11 @@
           <th scope="row">{{ brand.id }}</th>
           <td>{{ brand.name }}</td>
           <td>
-            <button class="btn btn-warning">Edit Brand</button>
+            <router-link
+              :to="{ name: 'brand', params: { id: brand.id } }"
+              class="btn btn-warning"
+              >Edit Brand</router-link
+            >
           </td>
           <td>
             <button @click="delBrand(brand.id)" class="btn btn-danger">

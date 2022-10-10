@@ -79,7 +79,6 @@ const mutations = {
     const filteredModels = payload.filter(
       (model) => !state.models.some((_model) => _model.id === model.id)
     );
-    console.log(payload, filteredModels);
     state.models = state.models.concat(filteredModels);
   },
 

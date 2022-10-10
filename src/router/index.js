@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginPage from "@/views/LoginPage.vue";
-import Brands from "@/views/Brands.vue";
+import Brands from "@/views/brand/Brands.vue";
 import Brand from "@/views/brand/Brand.vue";
 import Car from "@/views/car/Car.vue";
-import Cars from "@/views/Cars.vue";
-import Models from "@/views/Models.vue";
+import Cars from "@/views/car/Cars.vue";
+import Models from "@/views/model/Models.vue";
 import Model from "@/views/model/Model.vue";
 import Main from "@/views/Main.vue";
 import store from "@/store";
@@ -30,7 +30,7 @@ const router = createRouter({
       component: BrandsLayout,
       children: [
         {
-          path: ":id",
+          path: "",
           name: "brands",
           component: Brands,
         },
@@ -62,7 +62,7 @@ const router = createRouter({
       component: ModelsLayout,
       children: [
         {
-          path: " ",
+          path: "",
           name: "models",
           component: Models,
         },

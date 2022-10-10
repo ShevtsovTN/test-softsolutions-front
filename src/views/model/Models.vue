@@ -16,7 +16,11 @@
           <td>{{ model.brand?.name }}</td>
           <td>{{ model.name }}</td>
           <td>
-            <button class="btn btn-warning">Edit Model</button>
+            <router-link
+              :to="{ name: 'model', params: { id: model.id } }"
+              class="btn btn-warning"
+              >Edit Model</router-link
+            >
           </td>
           <td>
             <button @click="delModel(model.id)" class="btn btn-danger">
