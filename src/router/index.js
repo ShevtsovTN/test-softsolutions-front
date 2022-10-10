@@ -9,6 +9,8 @@ import Model from "@/views/model/Model.vue";
 import Main from "@/views/Main.vue";
 import store from "@/store";
 import CarsLayout from "@/views/layouts/CarsLayout.vue";
+import ModelsLayout from "@/views/layouts/ModelsLayout.vue";
+import BrandsLayout from "@/views/layouts/BrandsLayout.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,9 +27,13 @@ const router = createRouter({
     },
     {
       path: "/brands",
-      name: "brands",
-      component: Brands,
+      component: BrandsLayout,
       children: [
+        {
+          path: ":id",
+          name: "brands",
+          component: Brands,
+        },
         {
           path: ":id",
           name: "brand",
@@ -53,9 +59,13 @@ const router = createRouter({
     },
     {
       path: "/models",
-      name: "models",
-      component: Models,
+      component: ModelsLayout,
       children: [
+        {
+          path: " ",
+          name: "models",
+          component: Models,
+        },
         {
           path: ":id",
           name: "model",
