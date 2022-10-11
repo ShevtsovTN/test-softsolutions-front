@@ -1,5 +1,8 @@
 <template>
   <div class="container mt-4">
+    <RouterLink class="btn btn-success mb-4" :to="{ name: 'carCreate' }"
+      >Create Car</RouterLink
+    >
     <table class="table align-middle">
       <thead>
         <tr>
@@ -28,12 +31,12 @@
           <td>{{ car.register_number }}</td>
           <td><div class="p-3" :style="{ background: car.color }"></div></td>
           <td>{{ car.kpp }}</td>
-          <td>{{ car.rent }} р/в сутки</td>
+          <td>{{ car.rent }} euros/month</td>
           <td>
             <router-link
               :to="{ name: 'car', params: { id: car.id } }"
-              class="btn btn-warning"
-              >Edit Car</router-link
+              class="btn btn-success"
+              >Show Car</router-link
             >
           </td>
           <td>

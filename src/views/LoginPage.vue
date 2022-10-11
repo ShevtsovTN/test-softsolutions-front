@@ -28,7 +28,9 @@
                         v-model="form.email.value"
                       />
                       <small class="text-muted"
-                        >min 5 / {{ form.email.value.length }} / max 50</small
+                        >min {{ formValidParams.email.minLength }} /
+                        {{ form.email.value.length }} / max
+                        {{ formValidParams.email.maxLength }}</small
                       >
                       <small
                         class="invalid-feedback"
@@ -76,8 +78,9 @@
                         v-model="form.password.value"
                       />
                       <small class="text-muted"
-                        >min 8 / {{ form.password.value.length }} / max
-                        50</small
+                        >min {{ formValidParams.email.minLength }} /
+                        {{ form.password.value.length }} / max
+                        {{ formValidParams.email.maxLength }}</small
                       >
                       <small
                         class="invalid-feedback"
@@ -133,6 +136,16 @@ export default {
 
   setup() {
     const store = useStore();
+    const formValidParams = {
+      email: {
+        minLength: 5,
+        maxLength: 50,
+      },
+      password: {
+        minLength: 8,
+        maxLength: 50,
+      },
+    };
 
     const form = useForm({
       email: {
@@ -162,6 +175,7 @@ export default {
     }
 
     return {
+      formValidParams,
       form,
       submit,
     };

@@ -39,7 +39,7 @@ const actions = {
       .get(config.url + "cars/" + carId)
       .then((response) => {
         commit("setLoading", true);
-        commit("setCar", response.record);
+        commit("setCar", response.data);
         commit("setLoading", false);
       })
       .catch((error) => console.log(error.toJSON()));
@@ -49,7 +49,7 @@ const actions = {
     api
       .post(config.url + "cars", payload.data)
       .then((response) => {
-        commit("addCar", response.record);
+        commit("addCar", response.data);
       })
       .catch((error) => console.log(error.toJSON()));
   },
@@ -58,7 +58,7 @@ const actions = {
     api
       .update(config.url + "cars/" + payload.carId, payload.data)
       .then((response) => {
-        commit("updCar", response.record);
+        commit("updCar", response.data);
       })
       .catch((error) => console.log(error.toJSON()));
   },
@@ -67,7 +67,7 @@ const actions = {
     api
       .destroy(config.url + "cars/" + carId)
       .then((response) => {
-        commit("delCar", response.record);
+        commit("delCar", response.data);
       })
       .catch((error) => console.log(error.toJSON()));
   },

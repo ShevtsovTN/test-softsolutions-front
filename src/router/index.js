@@ -11,6 +11,8 @@ import store from "@/store";
 import CarsLayout from "@/views/layouts/CarsLayout.vue";
 import ModelsLayout from "@/views/layouts/ModelsLayout.vue";
 import BrandsLayout from "@/views/layouts/BrandsLayout.vue";
+import CarEdit from "@/views/car/CarEdit.vue";
+import CarCreate from "@/views/car/CarCreate.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +28,7 @@ const router = createRouter({
       component: LoginPage,
     },
     {
-      path: "/brands",
+      path: "/admin/brands",
       component: BrandsLayout,
       children: [
         {
@@ -42,7 +44,7 @@ const router = createRouter({
       ],
     },
     {
-      path: "/cars",
+      path: "/admin/cars",
       component: CarsLayout,
       children: [
         {
@@ -55,10 +57,20 @@ const router = createRouter({
           name: "car",
           component: Car,
         },
+        {
+          path: ":id/edit",
+          name: "carEdit",
+          component: CarEdit,
+        },
+        {
+          path: "/create",
+          name: "carCreate",
+          component: CarCreate,
+        },
       ],
     },
     {
-      path: "/models",
+      path: "/admin/models",
       component: ModelsLayout,
       children: [
         {
