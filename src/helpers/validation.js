@@ -12,3 +12,17 @@ export function email(val) {
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
   return EMAIL_REGEXP.test(val);
 }
+
+export function minLengthFile(fileLength) {
+  return (val) => {
+    console.log(val);
+    // return val >= fileLength;
+  };
+}
+
+export function maxLengthFile(fileLength) {
+  return (val) => {
+    console.log(val);
+    // return val <= fileLength;
+  };
+}

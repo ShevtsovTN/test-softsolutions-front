@@ -15,3 +15,4 @@ app.mount("#app");
 
 axios.defaults.withCredentials = true;
 axios.defaults.headers.common["Accept"] = "application/json";
+axios.defaults.headers.put["Content-Type"] = "multipart/form-data";

@@ -47,7 +47,7 @@ const actions = {
 
   createCar({ commit }, payload) {
     api
-      .post(config.url + "cars", payload.data)
+      .post(config.url + "cars", payload.data, payload.config)
       .then((response) => {
         commit("addCar", response.data);
       })
@@ -56,7 +56,11 @@ const actions = {
 
   updateCar({ commit }, payload) {
     api
-      .update(config.url + "cars/" + payload.carId, payload.data)
+      .update(
+        config.url + "cars/" + payload.carId,
+        payload.data,
+        payload.config
+      )
       .then((response) => {
         commit("updCar", response.data);
       })

@@ -8,16 +8,16 @@ export default class api {
       .catch((error) => console.log(error.toJSON()));
   }
 
-  static async post(url, data, options = {}) {
+  static async post(url, data, config) {
     return await axios
-      .post(url, data, options)
+      .post(url, data, config)
       .then((response) => response.data)
       .catch((error) => console.log(error.toJSON()));
   }
 
-  static async update(url, data, options = {}) {
+  static async update(url, data, config) {
     return await axios
-      .put(url, data, options)
+      .put(url, data, config)
       .then((response) => response.data)
       .catch((error) => console.log(error.toJSON()));
   }
